@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --checked: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --bright-blue: hsl(220, 98%, 61%);
+}
+
+.active {
+  color: var(--bright-blue);
+}
+
+body {
+  font-family: "Josefin Sans";
+  transition: 0.5s ease;
+
+  --background: hsl(0, 0%, 98%);
+  --text: hsl(235, 19%, 35%);
+  --footer-text: hsl(236, 9%, 61%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+}
+
+body.dark {
+  transition: 0s;
+  background: var(--background);
+
+  --background: hsl(235, 21%, 11%);
+  --task-background: hsl(235, 24%, 19%);
+  --footer-text: hsl(234, 11%, 52%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+}
+
+.header-background {
+  width: 100vw;
+  z-index: -1;
+  height: 40vh;
+}
+
+body .header-background {
+  background: url("/images/bg-desktop-light.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.dark .header-background {
+  background: url("/images/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+}
+
+header .title {
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1rem;
+  font-size: 2rem;
+}
+
+header #theme-toggler {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+header #theme-toggler:hover {
+  filter: brightness(0.9);
+}
+
+header #theme-toggler img {
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease;
+}
+
+body .drag-and-drop-warning {
+  color: var(--footer-text);
+  text-align: center;
+}
+
+body.dark .drag-and-drop-warning {
+  color: var(--footer-text);
+}
+
+main .tasks-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main .tasks-footer ul {
+  list-style: none;
+  display: flex;
+}
+
+main .tasks-footer ul li {
+  margin: 0.25rem;
+}
+
+main .tasks-footer ul li a {
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: var(--dark-grayish-blue);
+}
+
+main .tasks-footer ul li a:hover {
+  color: var(--text);
+}
+
+main .tasks-footer ul li a.active {
+  cursor: auto;
+  color: var(--bright-blue);
+}
+
+body .attribution {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  transition: 0.2s ease;
+  font-size: 11px;
+  text-align: center;
+}
+
+body.dark .attribution {
+  color: white;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.task .left {
+  display: flex;
+  align-items: center;
+}
+
+.task .left p {
+  margin-left: 1rem;
+}
+
+.task.completed p {
+  text-decoration: line-through;
+}
+
+.task.completed .task-complete {
+  background: black;
+}

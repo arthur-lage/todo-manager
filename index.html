@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-background"></div>
+
+      <header>
+        <h1 class="title">Todo Manager</h1>
+        <div class="theme">
+          <button id="theme-toggler">
+            <img src="images/icon-moon.svg" alt="Toggle theme">
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <div class="task-input">
+          <input type="text" id="task-input">
+        </div>
+
+        <div class="task-container"></div>
+
+        <div class="tasks-footer">
+          <span>
+            <span id="items-left">3</span>
+            items left
+          </span>
+  
+          <ul>
+            <li>
+              <a onclick="handleFilter('all')" id="all-option">
+                All
+              </a>
+            </li>
+            <li>
+              <a onclick="handleFilter('uncompleted')" id="uncompleted-option">
+                Active
+              </a>
+            </li>
+            <li>
+              <a onclick="handleFilter('completed')" id="completed-option">
+                Completed
+              </a> 
+            </li>
+          </ul>
+  
+          <button id="clear-completed">Clear Completed</button>
+        </div>
+      </main>
+
+      <footer class="drag-and-drop-warning">
+        <p>Drag and drop to reorder list</p>
+      </footer>
+    </div>
+    <script src="theme.js"></script>
+    <script src="tasks.js"></script>
+  </body>
+</html>
