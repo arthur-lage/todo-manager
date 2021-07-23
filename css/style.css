@@ -314,10 +314,10 @@ body main #clear-completed:hover {
 
   body main .tasks-footer,
   body main #clear-completed {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
   }
-  
-  body main .items-left, body main #clear-completed{
+
+  body main .task-container .items-left, body main .task-container #clear-completed{
     margin: 0;
   }
 }
@@ -336,7 +336,7 @@ body main #clear-completed:hover {
     font-size: 0.5rem;
   }
 
-  body main .items-left, body main #clear-completed{
+  body main .task-container .items-left, body main .task-container #clear-completed{
     margin: 0;
   }
 }
