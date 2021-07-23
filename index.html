@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo Manager</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -14,32 +17,31 @@
       <div class="header-background"></div>
 
       <header>
-        <h1 class="title">Todo Manager</h1>
-        <div class="theme">
-          <button id="theme-toggler">
-            <img src="images/icon-moon.svg" alt="Toggle theme">
-          </button>
+        <div class="title-wrapper">
+          <h1 class="title">Todo Manager</h1>
+          <div class="theme">
+            <button id="theme-toggler">
+              <img src="images/icon-moon.svg" alt="Toggle theme" />
+            </button>
+          </div>
+        </div>
+        <div class="task-input">
+          <input type="text" placeholder="Eg: Buy milk" id="task-input" />
         </div>
       </header>
 
       <main>
-        <div class="task-input">
-          <input type="text" id="task-input">
-        </div>
-
         <div class="task-container"></div>
 
         <div class="tasks-footer">
-          <span>
+          <span class="items-left">
             <span id="items-left">3</span>
             items left
           </span>
-  
+
           <ul>
             <li>
-              <a onclick="handleFilter('all')" id="all-option">
-                All
-              </a>
+              <a onclick="handleFilter('all')" id="all-option"> All </a>
             </li>
             <li>
               <a onclick="handleFilter('uncompleted')" id="uncompleted-option">
@@ -49,10 +51,10 @@
             <li>
               <a onclick="handleFilter('completed')" id="completed-option">
                 Completed
-              </a> 
+              </a>
             </li>
           </ul>
-  
+
           <button id="clear-completed">Clear Completed</button>
         </div>
       </main>

@@ -70,51 +70,55 @@ const Tasks = {
     if (toLoad == "all") {
       tasks.forEach((task) => {
         const newTask = `
-                    <div class="task ${task.completed ? "completed" : ""}">
-                        <div class="left">
-                            <button data-id="${
-                              task.id
-                            }" onclick="Tasks.check(this.dataset.id)" class="task-complete">
-                                <img src="images/icon-check.svg"/>
-                            </button>
-                            <p>${task.title}</p>
-                        </div>
-                        <button data-id="${
-                          task.id
-                        }" onclick="Tasks.delete(this.dataset.id)" class="task-close">
-                            <img src="images/icon-cross.svg"/>
-                        </button>
-                    </div>
-                `;
+          <div class="task ${task.completed ? "completed" : ""}">
+              <div class="left">
+                  <button data-id="${
+                    task.id
+                  }" onclick="Tasks.check(this.dataset.id)" class="task-complete">
+                      <img src="images/icon-check.svg"/>
+                  </button>
+                  <p>${task.title}</p>
+              </div>
+              <button data-id="${
+                task.id
+              }" onclick="Tasks.delete(this.dataset.id)" class="task-delete">
+                  <img src="images/icon-cross.svg"/>
+              </button>
+          </div>
+      `;
 
         taskContainer.innerHTML += newTask;
       });
+
+      handleCheckTheme();
     }
 
     if (toLoad == "uncompleted") {
       tasks.forEach((task) => {
         if (task.completed == false) {
           const newTask = `
-                    <div class="task ${task.completed ? "completed" : ""}">
-                        <div class="left">
-                            <button data-id="${
-                              task.id
-                            }" onclick="Tasks.check(this.dataset.id)" class="task-complete">
-                                <img src="images/icon-check.svg"/>
-                            </button>
-                            <p>${task.title}</p>
-                        </div>
-                        <button data-id="${
-                          task.id
-                        }" onclick="Tasks.delete(this.dataset.id)" class="task-close">
-                            <img src="images/icon-cross.svg"/>
-                        </button>
-                    </div>
-                `;
+            <div class="task ${task.completed ? "completed" : ""}">
+                <div class="left">
+                    <button data-id="${
+                      task.id
+                    }" onclick="Tasks.check(this.dataset.id)" class="task-complete">
+                        <img src="images/icon-check.svg"/>
+                    </button>
+                    <p>${task.title}</p>
+                </div>
+                <button data-id="${
+                  task.id
+                }" onclick="Tasks.delete(this.dataset.id)" class="task-delete">
+                    <img src="images/icon-cross.svg"/>
+                </button>
+            </div>
+        `;
 
           taskContainer.innerHTML += newTask;
         }
       });
+
+      handleCheckTheme();
     }
 
     if (toLoad == "completed") {
@@ -132,7 +136,7 @@ const Tasks = {
                         </div>
                         <button data-id="${
                           task.id
-                        }" onclick="Tasks.delete(this.dataset.id)" class="task-close">
+                        }" onclick="Tasks.delete(this.dataset.id)" class="task-delete">
                             <img src="images/icon-cross.svg"/>
                         </button>
                     </div>
@@ -141,6 +145,8 @@ const Tasks = {
           taskContainer.innerHTML += newTask;
         }
       });
+
+      handleCheckTheme();
     }
   },
   clear() {
@@ -218,6 +224,37 @@ function handleFilter(filter) {
 
   Tasks.setFilter(filter);
 }
+
+function handleCheckTheme(){
+  const theme = localStorage.getItem("theme");
+  if (theme == "") localStorage.setItem("theme", "light");
+
+
+  if (theme == "dark") {
+    document.body.classList.add("dark");
+    themeTogglerIcon.src = "images/icon-sun.svg";
+
+    document.querySelectorAll(".task .task-complete img").forEach((task) => {
+      task.src = "images/icon-check.svg";
+    });
+    document.querySelectorAll(".task .task-delete img").forEach((task) => {
+      task.src = "images/icon-cross.svg";
+    });
+  }
+
+  if (theme == "light") {
+    document.body.classList.remove("dark");
+    themeTogglerIcon.src = "images/icon-moon.svg";
+
+    document.querySelectorAll(".task .task-complete img").forEach((task) => {
+      task.src = "images/icon-check-black.svg";
+    });
+    document.querySelectorAll(".task .task-delete img").forEach((task) => {
+      task.src = "images/icon-cross-black.svg";
+    });
+  }
+}
+
 
 // EVENT LISTENERS
 

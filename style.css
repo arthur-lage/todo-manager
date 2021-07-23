@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat";
 }
 
 :root {
@@ -14,13 +15,13 @@
 }
 
 body {
-  font-family: "Josefin Sans";
   transition: 0.5s ease;
 
   --background: hsl(0, 0%, 98%);
   --text: hsl(235, 19%, 35%);
-  --footer-text: hsl(236, 9%, 61%);
-  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --footer-text: hsl(229, 14%, 15%);
+  --dark-grayish-blue: hsl(236, 9%, 37%);
+  --task-input-background: hsl(0, 0%, 87%);
 }
 
 body.dark {
@@ -29,8 +30,10 @@ body.dark {
 
   --background: hsl(235, 21%, 11%);
   --task-background: hsl(235, 24%, 19%);
-  --footer-text: hsl(234, 11%, 52%);
+  --footer-text: hsl(236, 9%, 61%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
+  --text: hsl(0, 0%, 90%);
+  --task-input-background: hsl(236, 33%, 17%);
 }
 
 .header-background {
@@ -41,12 +44,16 @@ body.dark {
 
 body .header-background {
   background: url("/images/bg-desktop-light.jpg");
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 5rem 5rem;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 body.dark .header-background {
   background: url("/images/bg-desktop-dark.jpg");
+  border-radius: 0 0 5rem 5rem;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -54,18 +61,50 @@ body.dark .header-background {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 40vw;
+  flex-direction: column;
+  width: 80vw;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 50px;
 }
 
+header .title-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .task-input {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+body header #task-input {
+  outline: none;
+  border: 0;
+  width: 100%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  transition: 0.2s ease;
+  background: var(--background);
+  padding-left: 1rem;
+  height: 3.1rem;
+  font-size: 1.2rem;
+  color: var(--text);
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+header #task-input:focus {
+  box-shadow: 0px 0px 7.5px rgba(0, 0, 0, 0.55);
+}
+
 header .title {
   font-weight: 700;
   color: white;
-  letter-spacing: 1rem;
+  letter-spacing: 0.3rem;
   font-size: 2rem;
 }
 
@@ -73,6 +112,7 @@ header #theme-toggler {
   border: 0;
   background: transparent;
   cursor: pointer;
+  outline: none;
   transition: 0.2s ease;
 }
 
@@ -89,16 +129,66 @@ header #theme-toggler img {
 body .drag-and-drop-warning {
   color: var(--footer-text);
   text-align: center;
+  position: absolute;
+  bottom: 25px;
+  font-weight: 500;
+  width: 100%;
 }
 
 body.dark .drag-and-drop-warning {
+  font-weight: 400;
   color: var(--footer-text);
+}
+
+main {
+  width: 80vw;
+  position: absolute;
+  left: 50%;
+  transition: 0.2s ease;
+  top: 35%;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  background: var(--background);
+  box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  transform: translateX(-50%);
+}
+
+main .task-container {
+  max-height: 275px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0.5rem;
+}
+
+main .task-container .task:first-child {
+  border-top: 0;
+}
+
+main .task-container .task:last-child {
+  border-bottom: 0;
+}
+
+main .task-container::-webkit-scrollbar {
+  width: 2px;
+}
+
+main .task-container::-webkit-scrollbar-thumb {
+  background: var(--dark-grayish-blue);
 }
 
 main .tasks-footer {
   display: flex;
+  border-top: 1px solid var(--text);
   align-items: center;
+  padding-top: 1rem;
   justify-content: space-between;
+}
+
+main .tasks-footer .items-left {
+  font-weight: 500;
+  margin-left: 1rem;
+  color: var(--dark-grayish-blue);
+  text-align: center;
 }
 
 main .tasks-footer ul {
@@ -112,6 +202,7 @@ main .tasks-footer ul li {
 
 main .tasks-footer ul li a {
   cursor: pointer;
+  font-weight: 500;
   transition: 0.2s ease;
   color: var(--dark-grayish-blue);
 }
@@ -125,29 +216,22 @@ main .tasks-footer ul li a.active {
   color: var(--bright-blue);
 }
 
-body .attribution {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
+main .task-container {
   transition: 0.2s ease;
-  font-size: 11px;
-  text-align: center;
-}
-
-body.dark .attribution {
-  color: white;
-}
-
-.attribution a {
-  color: hsl(228, 45%, 44%);
 }
 
 .task {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  padding: 0.75rem 0;
+  transition: 0.2s ease;
+  color: var(--text);
+  border-top: 1px solid var(--dark-grayish-blue);
+}
+
+.task:last-child {
+  border-bottom: 1px solid var(--dark-grayish-blue);
 }
 
 .task .left {
@@ -157,12 +241,102 @@ body.dark .attribution {
 
 .task .left p {
   margin-left: 1rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
 }
 
 .task.completed p {
   text-decoration: line-through;
 }
 
+.task .task-complete {
+  border: 1px solid var(--dark-grayish-blue);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  transition: 0.2s ease;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0.5rem;
+  justify-content: center;
+}
+
 .task.completed .task-complete {
-  background: black;
+  border: 1px solid var(--dark-grayish-blue);
+  border-radius: 50%;
+  transition: 0.2s ease;
+  background: var(--checked);
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.task .task-delete {
+  padding: 0.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.task .task-delete img {
+  stroke: var(--text);
+  color: var(--text);
+}
+
+body main #clear-completed {
+  border: 0;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 1rem;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--dark-grayish-blue);
+}
+
+body.dark main #clear-completed {
+  color: var(--dark-grayish-blue);
+}
+
+body main #clear-completed:hover {
+  color: var(--text);
+}
+
+/* RESPONSIVITY */
+
+@media only screen and (max-width: 375px) {
+  body main .task-container {
+    max-height: 350px;
+  }
+
+  body main .task {
+    font-size: 0.9rem;
+  }
+
+  body main .task button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  body main .tasks-footer,
+  body main #clear-completed {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  header .title {
+    font-size: 1.8rem;
+  }
+
+  body main .task {
+    font-size: 0.8rem;
+  }
+
+  body main .tasks-footer,
+  body main #clear-completed {
+    font-size: 0.5rem;
+  }
 }
