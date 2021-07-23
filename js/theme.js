@@ -39,6 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.body.style.transition = "";
 
   if (theme == "") localStorage.setItem("theme", "light");
+  if (theme == null) localStorage.setItem("theme", "light");
 
   if (theme == "dark") {
     document.body.classList.add("dark");
