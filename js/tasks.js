@@ -197,11 +197,9 @@ function handleFilter(filter) {
   uncompletedOption.classList.remove("active");
   completedOption.classList.remove("active");
 
-  document.querySelector(`#${filter}-option`).classList.add("active");
+  document.querySelector(`#${filter == null ? 'all' : filter}-option`).classList.add("active");
 
   Tasks.setFilter(filter);
-
-  App.reload()
 }
 
 function handleCheckTheme() {
