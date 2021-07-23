@@ -316,6 +316,10 @@ body main #clear-completed:hover {
   body main #clear-completed {
     font-size: 0.75rem;
   }
+  
+  body main .items-left, body main #clear-completed{
+    margin: 0;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -330,5 +334,9 @@ body main #clear-completed:hover {
   body main .tasks-footer,
   body main #clear-completed {
     font-size: 0.5rem;
+  }
+
+  body main .items-left, body main #clear-completed{
+    margin: 0;
   }
 }
