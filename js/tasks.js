@@ -27,23 +27,7 @@ const completedOption = document.querySelector("#completed-option");
 //     completed: false
 // }
 
-let tasks = [
-  {
-    id: 1,
-    title: "Teste",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Teste1",
-    completed: true,
-  },
-  {
-    id: 3,
-    title: "Teste2",
-    completed: false,
-  },
-];
+let tasks = JSON.parse(localStorage.getItem("todo-manager:todos")) || [];
 
 const Tasks = {
   create(info) {
@@ -63,6 +47,7 @@ const Tasks = {
     };
 
     tasks.push(newTask);
+    localStorage.setItem("todo-manager:todos", JSON.stringify(tasks));
 
     App.reload();
   },
@@ -154,11 +139,13 @@ const Tasks = {
   },
   delete(id) {
     tasks = tasks.filter((task) => task.id != id);
+    localStorage.setItem("todo-manager:todos", JSON.stringify(tasks));
 
     App.reload();
   },
   clearCompleted() {
     tasks = tasks.filter((task) => task.completed == false);
+    localStorage.setItem("todo-manager:todos", JSON.stringify(tasks));
 
     App.reload();
   },
@@ -176,6 +163,8 @@ const Tasks = {
         }
       }
     });
+
+    localStorage.setItem("todo-manager:todos", JSON.stringify(tasks));
 
     App.reload();
   },
@@ -225,10 +214,9 @@ function handleFilter(filter) {
   Tasks.setFilter(filter);
 }
 
-function handleCheckTheme(){
+function handleCheckTheme() {
   const theme = localStorage.getItem("theme");
   if (theme == "") localStorage.setItem("theme", "light");
-
 
   if (theme == "dark") {
     document.body.classList.add("dark");
@@ -254,7 +242,6 @@ function handleCheckTheme(){
     });
   }
 }
-
 
 // EVENT LISTENERS
 
