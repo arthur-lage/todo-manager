@@ -9,24 +9,6 @@ const allOption = document.querySelector("#all-option");
 const uncompletedOption = document.querySelector("#uncompleted-option");
 const completedOption = document.querySelector("#completed-option");
 
-// APPLICATION
-
-// {
-//     id: 1,
-//     title: "Teste",
-//     completed: false
-// },
-// {
-//     id: 2,
-//     title: "Teste1",
-//     completed: true
-// },
-// {
-//     id: 3,
-//     title: "Teste2",
-//     completed: false
-// }
-
 let tasks = JSON.parse(localStorage.getItem("todo-manager:todos")) || [];
 
 const Tasks = {
