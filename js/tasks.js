@@ -161,9 +161,11 @@ const App = {
   init() {
     const filter = localStorage.getItem("filter");
     if (filter == "") localStorage.setItem("filter", "all");
-
+    if (filter == null) localStorage.setItem("filter", "all");
+    if (filter == undefined) localStorage.setItem("filter", "all");
+    
     handleFilter(filter);
-
+    
     Tasks.clear();
     Tasks.updateRemaining();
     Tasks.load(filter);
@@ -171,7 +173,9 @@ const App = {
   reload() {
     const filter = localStorage.getItem("filter");
     if (filter == "") localStorage.setItem("filter", "all");
-
+    if (filter == null) localStorage.setItem("filter", "all");
+    if (filter == undefined) localStorage.setItem("filter", "all");
+    
     Tasks.clear();
     Tasks.updateRemaining();
     Tasks.load(filter);
