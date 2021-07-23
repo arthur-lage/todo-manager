@@ -176,8 +176,6 @@ const App = {
     if (filter == null) localStorage.setItem("filter", "all");
     if (filter == undefined) localStorage.setItem("filter", "all");
     
-    handleFilter(filter);
-
     Tasks.clear();
     Tasks.updateRemaining();
     Tasks.load(filter);
